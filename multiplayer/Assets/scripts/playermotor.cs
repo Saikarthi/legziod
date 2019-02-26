@@ -44,7 +44,7 @@ public class playermotor : MonoBehaviour
     }
     public void re()
     {
-        if (vel != Vector3.zero)
+        if (rot != Vector3.zero)
         {
 
             rb.MoveRotation(rb.rotation * Quaternion.Euler(rot));
