@@ -7,6 +7,7 @@ public class playermotor : MonoBehaviour
     private Vector3 rot = Vector3.zero;
     private Vector3 cam1 = Vector3.zero;
     private Rigidbody rb;
+    private Vector3 ap = Vector3.zero;
 
 
     void Start()
@@ -42,6 +43,11 @@ public class playermotor : MonoBehaviour
 
             rb.MovePosition(rb.position + vel * Time.deltaTime);
         }
+        if(ap != Vector3.zero)
+        {
+
+            rb.AddForce(ap * Time.deltaTime, ForceMode.Acceleration);
+        }
     }
     public void re()
     {
@@ -50,6 +56,10 @@ public class playermotor : MonoBehaviour
 
             rb.MoveRotation(rb.rotation * Quaternion.Euler(rot));
         }
+    }
+    public void applythu(Vector3 _thu)
+    {
+        ap = _thu;
     }
     public void Ce()
     {

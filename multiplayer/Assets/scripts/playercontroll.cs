@@ -9,6 +9,8 @@ public class  playercontroll : MonoBehaviour
 
     public playermotor motor;
     private float look = 3f;
+    [SerializeField]
+    private float thrusterforce = 500f; 
 
 
 
@@ -46,6 +48,13 @@ public class  playercontroll : MonoBehaviour
         Vector3 _camrotation = new Vector3(_xrot, 0f, 0f) * look;
 
         motor.co(_camrotation);
+        Vector3 thu = Vector3.zero;
+        //apply 
+        if (Input.GetButton("Jump"))
+        {
+            thu = Vector3.up * thrusterforce;
+        }
+        motor.applythu(thu);
     }
 }
 
