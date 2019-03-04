@@ -21,7 +21,7 @@ public class  playercontroll : MonoBehaviour
 
 
     void Update()
-    {
+    { //movements input
         float _xmov = Input.GetAxisRaw("Horizontal");
 
         float _zmov = Input.GetAxisRaw("Vertical");

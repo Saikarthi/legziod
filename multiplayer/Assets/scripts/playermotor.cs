@@ -29,6 +29,7 @@ public class playermotor : MonoBehaviour
     }
     void FixedUpdate()
     {
+        //output
         pe();
         re();
         Ce();
