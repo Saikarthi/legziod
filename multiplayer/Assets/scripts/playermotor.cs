@@ -5,11 +5,13 @@ public class playermotor : MonoBehaviour
     private Vector3 vel = Vector3.zero;
     public Camera cam;
     private Vector3 rot = Vector3.zero;
-    private Vector3 cam1 = Vector3.zero;
+    private float cam1x = 0f;
+    private float ccr = 0f;
     private Rigidbody rb;
     private Vector3 ap = Vector3.zero;
 
-
+    [SerializeField]
+    private float crl = 85f;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -24,9 +26,9 @@ public class playermotor : MonoBehaviour
     {
         rot = _v;
     }
-    public void co(Vector3 _v)
+    public void co(float _v)
     {
-        cam1 = _v;
+        cam1x = _v;
     }
     void FixedUpdate()
     {
@@ -46,7 +48,7 @@ public class playermotor : MonoBehaviour
         if(ap != Vector3.zero)
         {
 
-            rb.AddForce(ap * Time.deltaTime, ForceMode.Acceleration);
+            rb.AddForce(ap * Time.fixedDeltaTime, ForceMode.Acceleration);
         }
     }
     public void re()
@@ -66,7 +68,12 @@ public class playermotor : MonoBehaviour
         if (cam != null)
         {
 
-            cam.transform.Rotate(-cam1);
+            //new calc for cam -+
+            //we set rot and camp
+            ccr -= cam1x;
+            ccr = Mathf.Clamp(ccr, -crl, crl);
+            //apply our rotation to tranfrom
+            cam.transform.localEulerAngles = new Vector3(ccr, 0, 0);
         }
     }
 }
